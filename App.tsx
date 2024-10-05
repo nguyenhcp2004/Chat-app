@@ -1,18 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native'
+import AppLoading from 'expo-app-loading'
+import { HomeScreen } from './src/screens'
+import {
+  useFonts,
+  Roboto_400Regular,
+  Roboto_500Medium,
+  Roboto_700Bold
+} from '@expo-google-fonts/roboto'
+import { StatusBar } from 'expo-status-bar'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello World 123123</Text>
-    </View>
-  )
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+  let [fontsLoaded] = useFonts({
+    Roboto_400Regular,
+    Roboto_500Medium,
+    Roboto_700Bold
+  })
+  if (!fontsLoaded) {
+    return <AppLoading />
+  } else {
+    return (
+      <>
+        <StatusBar hidden />
+        <HomeScreen />
+      </>
+    )
   }
-})
+}
